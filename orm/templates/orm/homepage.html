@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-5 border me-2">
+                <h1>Personel Kayıt</h1>
+                <form method="post" >
+                    {% csrf_token %}
+                    {% comment %} {{ form.as_p }} {% endcomment %}
+                    <div class="mb-3">
+                      <label for="p_name" class="form-label">Personelin Adı</label>
+                      <input type="text" class="form-control" id="p_name" name="p_name">
+                      <div  class="form-text">Personel adı 20 karakterden fazla olamaz</div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="p_surname" class="form-label">Personelin Soyadı</label>
+                      <input type="text" class="form-control" id="p_surname" name="p_surname">
+                    </div>
+                    <div class="mb-3">
+                        <label for="p_rutbe" class="form-label">Personelin Rütbesi</label>
+                        <input type="text" class="form-control" id="p_rutbe" name="p_rutbe">
+                    </div>
+                    <div class="mb-3">
+                        <label for="age" class="form-label">Personelin Yaşı</label>
+                        <input type="text" class="form-control" id="age" name="age">
+                    </div> 
+                    <button type="submit" name="save" id="save" class="btn btn-primary">Kaydet</button>
+                  </form>
+            </div>
+       
+            <div class="col-5 border ">
+                <h1>Personel Sorgu</h1>
+                <form  method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                      <label for="personal_name" class="form-label">Personel adı</label>
+                      <input type="text" class="form-control" id="personal_name" name="personal_name" >
+                      <div  class="form-text">Sorgulamak istediğinizi personel ismini giriniz</div>
+                    </div>
+                   
+                    <button type="submit" name="select" id="select" class="btn btn-primary">Sorgula</button>
+                  </form>
+                  {% if personeller %}
+                  <p>ad:{{ ad }} </p>
+                  <p>soyad:{{ soyad }} </p>
+                  <p>rütbe:{{ rutbe }} </p>
+                  <p>yaş:{{ yas }} </p>
+                  {% endif %}
+            </div>
+
+       
+        </div>
+    </div>
+    {% if alert %}
+    <script>
+        alert("Kayıt Başarılı");
+    </script>
+    
+    {% endif %}
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+</html>
